@@ -85,7 +85,7 @@ export const PipelineUI = () => {
                 addNode(newNode);
             }
         },
-        [reactFlowInstance]
+        [reactFlowInstance, addNode, getNodeID]
     );
 
     const onDragOver = useCallback((event) => {
@@ -94,27 +94,25 @@ export const PipelineUI = () => {
     }, []);
 
     return (
-        <>
-            <div ref={reactFlowWrapper} className="w-full h-[72vh]">
-                <ReactFlow
-                    nodes={nodes}
-                    edges={edges}
-                    onNodesChange={onNodesChange}
-                    onEdgesChange={onEdgesChange}
-                    onConnect={onConnect}
-                    onDrop={onDrop}
-                    onDragOver={onDragOver}
-                    onInit={setReactFlowInstance}
-                    nodeTypes={nodeTypes}
-                    proOptions={proOptions}
-                    snapGrid={[gridSize, gridSize]}
-                    connectionLineType='smoothstep'
-                >
-                    <Background variant="lines" color="rgba(52, 49, 72, 0.22)" gap={gridSize} lineWidth={1} />
-                    <Controls />
-                    <MiniMap />
-                </ReactFlow>
-            </div>
-        </>
+        <div ref={reactFlowWrapper} className="w-full h-full">
+            <ReactFlow
+                nodes={nodes}
+                edges={edges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
+                onInit={setReactFlowInstance}
+                nodeTypes={nodeTypes}
+                proOptions={proOptions}
+                snapGrid={[gridSize, gridSize]}
+                connectionLineType='smoothstep'
+            >
+                <Background color="#aaa" gap={gridSize} />
+                <Controls />
+                <MiniMap />
+            </ReactFlow>
+        </div>
     )
 }

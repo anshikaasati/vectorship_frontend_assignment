@@ -3,36 +3,94 @@
 @tailwind utilities;
 
 @layer base {
-  html, body, #root { @apply h-full; }
-  body {
-    margin: 0;
-    color: rgb(196 181 253 / 0.9);
-    background:
-      radial-gradient(60rem 40rem at 15% 15%, rgba(139, 92, 246, 0.18), transparent 60%),
-      radial-gradient(50rem 35rem at 80% 25%, rgba(99, 102, 241, 0.15), transparent 55%),
-      linear-gradient(180deg, #0a0a14, #0b0f1a);
-  }
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --primary: 246 80% 60%;
+        /* Indigo/Purpleish from image */
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 246 80% 60%;
+
+        --radius: 0.75rem;
+
+        --sidebar-background: 0 0% 99%;
+        /* Very light grey */
+        --sidebar-foreground: 240 5.3% 26.1%;
+        --sidebar-border: 220 13% 91%;
+        --sidebar-accent: 240 4.8% 95.9%;
+        --sidebar-accent-foreground: 240 5.9% 10%;
+    }
+
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+
+        --sidebar-background: 240 5.9% 10%;
+        --sidebar-foreground: 240 4.8% 95.9%;
+        --sidebar-border: 240 3.7% 15.9%;
+        --sidebar-accent: 240 3.7% 15.9%;
+        --sidebar-accent-foreground: 240 4.8% 95.9%;
+    }
 }
 
-@layer components {
-  /* React Flow controls + handles */
-  .react-flow__controls-button { @apply bg-white/10 backdrop-blur-md text-violet-50 border border-white/15 hover:bg-white/15 transition; }
-  .react-flow__minimap { @apply bg-transparent; }
-  .react-flow__handle { @apply bg-violet-400 border border-white/25 w-[10px] h-[10px] transition-transform; }
+@layer base {
+    * {
+        @apply border-border;
+    }
 
-  /* Glassmorphism tokens */
-  .glass { @apply backdrop-blur-sm border border-white/15; }
-  .glass-card { @apply glass backdrop-blur-lg rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.35)] transition-transform duration-200 hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)] hover:-translate-y-0.5; }
-  .glass-button { @apply glass inline-flex items-center justify-center text-slate-50 shadow-[0_8px_18px_rgba(0,0,0,0.3)] transition hover:bg-white/15; }
-  .glass-stats { @apply glass backdrop-blur-md rounded-lg p-3; }
-  .glass-ring { @apply ring-1 ring-white/10 pointer-events-none absolute inset-0 rounded-[inherit]; }
-
-  /* Node selection / hover polish */
-  .react-flow__node.selected .glass-card { @apply ring-2 ring-violet-400/40; }
+    body {
+        @apply bg-background text-foreground antialiased;
+    }
 }
 
-/* Handle hover (CSS for smoother transform) */
-.react-flow__handle:hover { transform: scale(1.15); background-color: #a78bfa; }
-
-/* Minimal non-Tailwind override (SVG stroke) */
-.react-flow__edge-path { stroke: #8b5cf6 !important; }
+/* Custom Utilities for Glassmorphism if needed, or just refined */
+.glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+}

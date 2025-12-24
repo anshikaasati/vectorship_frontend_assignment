@@ -37,14 +37,20 @@ export const TextNode = ({ id, data }) => {
   }, [currText]);
 
   return (
-    <NodeBase title="Text" width={computedWidth} minHeight={100}>
+    <NodeBase title="Text" style={{ width: computedWidth, minHeight: 100 }}>
       {variables.map((v, idx) => (
         <Handle key={`var-${v}`} type="target" position={Position.Left} id={`${id}-var-${v}`} style={{ top: 44 + idx * 22 }} />
       ))}
       <Field label="Text">
         <textarea
           ref={textAreaRef}
-          className="w-full rounded-lg border border-white/15 bg-white/10 text-violet-50 outline-none focus:border-violet-300/60 focus:ring-2 focus:ring-violet-400/40 p-3 resize-none placeholder-violet-200/50"
+          className="
+            w-full rounded-md border border-input bg-transparent 
+            px-3 py-2 text-sm shadow-sm 
+            placeholder:text-muted-foreground 
+            focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+            resize-none
+          "
           value={currText}
           onChange={(e) => setCurrText(e.target.value)}
           placeholder="Type your text. Use {{variable}} to add inputs."

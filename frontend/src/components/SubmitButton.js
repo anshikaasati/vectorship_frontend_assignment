@@ -40,9 +40,18 @@ export const SubmitButton = () => {
 
     return (
         <>
-            <div className="flex items-center justify-center p-4 ">
-                <button className="glass-button rounded-lg px-4 py-2 text-sm font-semibold" type="button" onClick={onSubmit} disabled={loading}>
-                    <span className="glass-ring" />
+            <div className="flex items-center justify-center">
+                <button
+                    className="
+                        px-4 py-2 rounded-md
+                        bg-primary text-primary-foreground font-medium
+                        hover:bg-primary/90 transition-colors
+                        shadow-sm
+                    "
+                    type="button"
+                    onClick={onSubmit}
+                    disabled={loading}
+                >
                     {loading ? 'Submitting...' : 'Submit'}
                 </button>
             </div>
